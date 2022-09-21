@@ -18,6 +18,7 @@ Alignment  Pipeline scripts  are available in the WGS_Pipeline directory.
       * Qualimap :Quality control of alignment sequencing data.
     - S03 verify_bam_id
       * VerifyBamID2 : Detecting and estimating inter-sample DNA contamination.
+
 Long-reads Alignment Pipeline scripts ara available in ONT_Pipeline directory
 + 1. QC.sh
   - S01 Base calling using guppy
