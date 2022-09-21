@@ -18,6 +18,13 @@ Alignment  Pipeline scripts  are available in the WGS_Pipeline directory.
       * we use Qualimap for quality control of alignment sequencing data.
     - S03 verify_bam_id
       * we use VerifyBamID2 for detecting and estimating inter-sample DNA contamination.
+Long-reads Alignment Pipeline scripts ara available in ONT_Pipeline directory
++ 1. QC.sh
+  - S01 Base calling using guppy
++ 2. Mapping.sh 
+  - S01 mapping reads to reference genome usign minimap2
+  - S02 evaluation of mapping quality using nanoplot
+  - S03 Calculating the depth per chromosome using mosdepth
 
 ## Variant Calling based on short-reads
 Variant Calling  Pipeline scripts  are available in the WGS_Pipeline directory.
@@ -39,7 +46,16 @@ Variant Calling  Pipeline scripts  are available in the WGS_Pipeline directory.
 
 
 ## Variant Calling based on long-reads
-Ming Chen
+Variant Calling Pipeline scripts are available in the ONT_Pipeline directory.
++ VariantCalling.sh
+  - S01 variant call using sniffles
+  - S02 variant call using cuteSV
+  - S03 variant call using svim
+  - S04 variant call using nanovar
+  - S05 self defined script for filter variants
+  - S06 vcf merging by SURVIOR
+  - S07 force calling using cuteSV
+  - S08 merge the force called varians using SURVIVOR
 
 ## Functional Annotation
 Dianming Liu, Siyuan Liu
