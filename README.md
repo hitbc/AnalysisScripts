@@ -97,7 +97,9 @@ Gaoyang Li
 ### Population-based VCF quality control and filtering
 We first removed all the variants and samples with a missing call rate over 5% , and the variants with Hardy-Weinberg equilibrium (HWE) p < 10-6 using Plink.
 
-```plink --vcf Original.vcf.gz --geno 0.05 --hwe 1e-6 --const-fid --recode --out ptest```
+```
+plink --vcf Original.vcf.gz --geno 0.05 --hwe 1e-6 --const-fid --recode --out ptest
+```
 
 Second, we reserved all the variants with AC > 1 and singletons included ing commonly used genetype arrays.
 
@@ -106,7 +108,9 @@ Third, we recalculated the allele frequence for variants using `bcftools +fill-t
 ### Chinese reference panel construction using Minimac3
 We used the final callset to establish the reference panel, and Minimac3 was adopted to convert the reference panel into M3VCF format file. Each chromosome was constructed separately as following (chr2 for example)"
 
-```Minimac3 --refHaps Chinese.final.vcf.gz --processReference --prefix chn.panel --cpus 30 --chr chr2```
+```
+Minimac3 --refHaps Chinese.final.vcf.gz --processReference --prefix chn.panel --cpus 30 --chr chr2
+```
 
 ### Construction of combined (Our and 1KGP3) reference panel
 We combined our panel and 1KGP3 reference panels by employing the reciprocal imputation approach with Minimac4. In detail, we first imputed 1KGP variants using our reference panel and imputed our variants using 1KGP reference panel respectively. And then merge the two imputed VCF files into the combined VCF file and convert to M3VCF format file after removing incompatible alleles. The commands we used as follows.
@@ -132,7 +136,9 @@ tabix isec/masked.vcf.gz
 #### Imputation on the target genotype data
 Before imputaion, we pre-phased the target genotype data using different panels respectively as following (Our panel for example):
 
-```eagle --noImpMissing --vcfRef chn.final.vcf.gz --vcfTarget target.vcf.gz --geneticMapFile $geneticMAP --allowRefAltSwap --vcfOutFormat z --outputUnphased --outPrefix target.chn.phase --numThreads 8```
+```
+eagle --noImpMissing --vcfRef chn.final.vcf.gz --vcfTarget target.vcf.gz --geneticMapFile $geneticMAP --allowRefAltSwap --vcfOutFormat z --outputUnphased --outPrefix target.chn.phase --numThreads 8
+```
 
 We run our panel using the following command:
 
