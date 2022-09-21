@@ -101,7 +101,7 @@ We first removed all the variants and samples with a missing call rate over 5% ,
 plink --vcf Original.vcf.gz --geno 0.05 --hwe 1e-6 --const-fid --recode --out ptest
 ```
 
-Second, we reserved all the variants with AC > 1 and singletons included ing commonly used genetype arrays.
+Second, we reserved all the variants with AC > 1 and singletons included in commonly used genetype arrays.
 
 Third, we recalculated the allele frequence for variants using `bcftools +fill-tags` and extracted all SNPs using `bcftools view` to generate the final callset for the construction of reference panel.
 
