@@ -3,10 +3,36 @@
 Leadership: Tao Jiang and Yadong Liu
 
 ## Alignment 
-Anqi Zhang
+Alignment  Pipeline scripts  are available in the WGS_Pipeline directory.
+1. alignment.sh
+   Steps:
+    S01 bwa_mem_pipe
+    S02 picard_merge_sam_files
+    S03 gatk4_recalibration_by_chr
+2. qc.sh
+   Steps:
+    S01 fastqc_qc
+    S02 qualimap_bamqc
+    S03 verify_bam_id
 
 ## Variant Calling based on short-reads
-Anqi Zhang
+Variant Calling  Pipeline scripts  are available in the WGS_Pipeline directory.
+1. variant_call.sh
+  Steps:
+  S01 gatk4_haplotype_caller_family
+  S02 manta
+  S03 cnvnator
+  S04 smoove
+2. snp_indel_joint_call.sh
+   Steps:
+    S01 gatk4_GenomicsDBImport
+    S02 gatk_DBImport_genotype
+    S03 gatk_gather_vcf
+    S04 gatk_vqsr
+    S05 cohort_vcf_normalize
+    S06 hwe_missing_rate
+    S07 shapeit4
+
 
 ## Variant Calling based on long-reads
 Ming Chen
