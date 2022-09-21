@@ -4,15 +4,20 @@ Leadership: Tao Jiang and Yadong Liu
 
 ## Alignment 
 Alignment  Pipeline scripts  are available in the WGS_Pipeline directory.
-+ alignment.sh
++ 1. alignment.sh
    - S01 bwa_mem_pipe
+      * We use BWA_MEM for mapping DNA sequences against ref_grch38; Sambamba for sort and processing of NGS alignment formats;  Samblaster for duplicate marking.
    - S02 picard_merge_sam_files
+      * We use picard for merging multiple SAM and/or BAM files into a single file. If there is only one readset, skip this step.
    - S03 gatk4_recalibration_by_chr
-2. qc.sh
-   Steps:
-    S01 fastqc_qc
-    S02 qualimap_bamqc
-    S03 verify_bam_id
+      * We use gatk4-BaseRecalibrator for base quality score recalibration.
++ 2. qc.sh
+    - S01 fastqc_qc
+      * we use FastQC to do some quality control checks on raw sequence data coming from high throughput sequencing pipelines.
+    - S02 qualimap_bamqc
+      * we use Qualimap for quality control of alignment sequencing data.
+    - S03 verify_bam_id
+      * we use VerifyBamID2 for detecting and estimating inter-sample DNA contamination.
 
 ## Variant Calling based on short-reads
 Variant Calling  Pipeline scripts  are available in the WGS_Pipeline directory.
