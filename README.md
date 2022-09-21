@@ -111,7 +111,9 @@ Example: `perl table_annovar.pl example.avinput humandb/ -buildver hg38 -out exa
 #### 3. VarNote Annotation
 We use VarNote for filter-based and region-based annotation. Considering the large number of datasets involved, we use the configuration file to specify the name of the annotation item.  
 Example: `java -jar VarNote-1.1.0.jar Annotation -Q:tab,c=1,b=2,e=3,ref=4,alt=5 example.avinput -D:db,tag=exac03,mode=1 hg38_exac03.txt.gz -D:db,tag=cage_enhancers,mode=0 hg38_cage_enhancers.bed.gz -O example -OF BED -T 16 -A example.cfg -Z False -loj True -MVL 500`
-
+#### 4. AnnotSV Annotation
+We use AnnotSV for structural variant annotation, the dependent datasets should be downloaded during the installation.  
+Example:`AnnotSV -SVinputFile example.vcf  -genomeBuild GRCh38 -outputFile example.annotsv.out  -SVminSize 30`
 
 ## Population genetic analysis
 Yang Li
