@@ -1,7 +1,7 @@
 annotationAnaysis
 ======
 
-The annotation statistics process for SNP uses the internal script "annotationAnaysisSNP" and for SV the script "annotationAnaysisSV", these scripts can be found in  "AnalysisScripts/annotationAnaysis/". The analysis is divided into three processes, which are to count a piece of data and generate the result json file, then to merge all the results and generate the merged json file, and finally, to use the json file to generate a spreadsheet. The specific execution commands are as follows:
+The annotation statistics process for SNP uses the in-house script "annotationAnaysisSNP" and for SV the script "annotationAnaysisSV", these scripts can be found in  "AnalysisScripts/annotationAnaysis/". The analysis is divided into three processes, which are to count a piece of data and generate the result json file, then to merge all the results and generate the merged json file, and finally, to use the json file to generate a spreadsheet. The specific execution commands are as follows:
 
 ## For SNPs:
 (1)Execute annotation statistics, where "SNP_anno_file.txt" is the annotation result file, and "output_fn.json" is the statistics result.
