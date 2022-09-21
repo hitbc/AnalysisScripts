@@ -6,36 +6,45 @@ Leadership: Tao Jiang and Yadong Liu
 Alignment  Pipeline scripts  are available in the WGS_Pipeline directory.
 + 1. alignment.sh
    - S01 bwa_mem_pipe
-      * We use BWA_MEM for mapping DNA sequences against ref_grch38; Sambamba for sort and processing of NGS alignment formats;  Samblaster for duplicate marking.
+      * BWA_MEM : Mapping DNA sequences against ref_grch38; Sambamba for sort and processing of NGS alignment formats;  Samblaster for duplicate marking.
    - S02 picard_merge_sam_files
-      * We use picard for merging multiple SAM and/or BAM files into a single file. If there is only one readset, skip this step.
+      * Picard : Merging multiple SAM and/or BAM files into a single file. If there is only one readset, skip this step.
    - S03 gatk4_recalibration_by_chr
-      * We use gatk4-BaseRecalibrator for base quality score recalibration.
+      * GATK4-BaseRecalibrator: Base quality score recalibration.
 + 2. qc.sh
     - S01 fastqc_qc
-      * we use FastQC to do some quality control checks on raw sequence data coming from high throughput sequencing pipelines.
+      * FastQC: Quality control checks on raw sequence data coming from high throughput sequencing pipelines.
     - S02 qualimap_bamqc
-      * we use Qualimap for quality control of alignment sequencing data.
+      * Qualimap :Quality control of alignment sequencing data.
     - S03 verify_bam_id
-      * we use VerifyBamID2 for detecting and estimating inter-sample DNA contamination.
+      * VerifyBamID2 : Detecting and estimating inter-sample DNA contamination.
 
 ## Variant Calling based on short-reads
 Variant Calling  Pipeline scripts  are available in the WGS_Pipeline directory.
-1. variant_call.sh
-  Steps:
-  S01 gatk4_haplotype_caller_family
-  S02 manta
-  S03 cnvnator
-  S04 smoove
-2. snp_indel_joint_call.sh
-   Steps:
-    S01 gatk4_GenomicsDBImport
-    S02 gatk_DBImport_genotype
-    S03 gatk_gather_vcf
-    S04 gatk_vqsr
-    S05 cohort_vcf_normalize
-    S06 hwe_missing_rate
-    S07 shapeit4
++ 1. variant_call.sh
+    - S01 gatk4_haplotype_caller_family
+      * GATK4-HaplotypeCaller: Call germline SNPs and indels. 
+    - S02 manta
+      * Manta : Call Structural variation.
+    - S03 cnvnator
+      * Cnvnator : CNV discovery and genotyping from depth-of-coverage by mapped reads.
+    - S04 smoove
+      * Smoove : Calling and genotyping SVs for short reads. It also improves specificity by removing many spurious alignment signals that are indicative of low-level noise and often contribute to spurious calls.
++ 2. snp_indel_joint_call.sh
+    - S01 gatk4_GenomicsDBImport
+      * GATK4-GenomicsDBImport : Import single-sample GVCFs into GenomicsDB before joint genotyping. 
+    - S02 gatk_DBImport_genotype
+      * GATK4-GenotypeGVCFs : Perform joint genotyping on one or more samples pre-called.
+    - S03 gatk_gather_vcf
+      * GATK4-GatherVcfs : Gathers multiple VCF files from a scatter operation into a single VCF file.
+    - S04 gatk_vqsr
+      * GATK4-VariantRecalibrator : Build a recalibration model to score variant quality for filtering purposes; GATK4-ApplyVQSR : Apply a score cutoff to filter variants based on a recalibration table.
+    - S05 cohort_vcf_normalize
+      * bcftools-norm : Left-align and normalize indels, check if REF alleles match the reference, split multiallelic sites into multiple rows; recover multiallelics from multiple rows.
+    - S06 hwe_missing_rate
+      * vcftools filter: --hwe option: Assesses sites for Hardy-Weinberg Equilibrium using an exact test; --max-missing : Exclude sites on the basis of the proportion of missing data.
+    - S07 shapeit4
+      * shapeit: estimation of haplotypes from genotype or sequencing data.
 
 
 ## Variant Calling based on long-reads
