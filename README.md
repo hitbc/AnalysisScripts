@@ -64,5 +64,7 @@ Yang Li
 Gaoyang Li
 
 ## Reference panel construction and imputation performing
-Yadong Liu
+### Creating Chinese population reference panel
+
+
 
