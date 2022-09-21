@@ -96,7 +96,7 @@ Gaoyang Li
 ## Reference panel construction and imputation performing
 ### Population-based VCF quality control and filtering
 We first removed all the variants and samples with a missing call rate over 5% , and the variants with Hardy-Weinberg equilibrium (HWE) p < 10-6 using Plink.
-`plink --vcf Original.vcf.gz --geno 0.05 --hwe 1e-6 --const-fid --recode --out ptest`
+```plink --vcf Original.vcf.gz --geno 0.05 --hwe 1e-6 --const-fid --recode --out ptest```
 
 Second, we reserved all the variants with AC > 1 and singletons included ing commonly used genetype arrays.
 
@@ -104,11 +104,12 @@ Third, we recalculated the allele frequence for variants using `bcftools +fill-t
 
 ### Chinese reference panel construction using Minimac3
 We used the final callset to establish the reference panel, and Minimac3 was adopted to convert the reference panel into M3VCF format file. Each chromosome was constructed separately as following (chr2 for example)"
-`Minimac3 --refHaps Chinese.final.vcf.gz --processReference --prefix chn.panel --cpus 30 --chr chr2`
+```Minimac3 --refHaps Chinese.final.vcf.gz --processReference --prefix chn.panel --cpus 30 --chr chr2```
 
 ### Construction of combined (Our and 1KGP3) reference panel
 We combined our panel and 1KGP3 reference panels by employing the reciprocal imputation approach with Minimac4. In detail, we first imputed 1KGP variants using our reference panel and imputed our variants using 1KGP reference panel respectively. And then merge the two imputed VCF files into the combined VCF file and convert to M3VCF format file after removing incompatible alleles. The commands we used as follows.
-```minimac4 --refHaps chn.panel.m3vcf.gz --haps 1KGP3.vcf.gz --prefix our_impute_1KGP3 --format GT,DS,GP --mapFile $geneticMAP –ignoreDuplicates
+```
+minimac4 --refHaps chn.panel.m3vcf.gz --haps 1KGP3.vcf.gz --prefix our_impute_1KGP3 --format GT,DS,GP --mapFile $geneticMAP –ignoreDuplicates
 minimac4 --refHaps 1KGP3.m3vcf.gz --haps chn.final.vcf.gz --prefix 1KGP3_impute_our --format GT,DS,GP --mapFile $geneticMAP –ignoreDuplicates
 bcftools merge our_impute_1KGP3.dose.vcf.gz 1KGP3_impute_our.dose.vcf.gz -Oz -o $combined.vcf.gz
 Minimac3 --refHap combined.vcf.gz --processReference --prefix combined.panel
@@ -116,7 +117,7 @@ Minimac3 --refHap combined.vcf.gz --processReference --prefix combined.panel
 
 ### Genotype imputation using different reference panels
 #### Pseudo-GWAS dataset generation for impuation
-We extracted the genotype data from 143 individuals from 16 Chinese populations included in the Human Genome Diversity Project (HGDP) as prebuilt pseudo-GWAS dataset. We extracted all variants with consistent alleles in the pseudo-GWAS dataset and all compared panels. Then we randomly masked one-tenth of the SNVs, and these masked SNVs were used to evaluate imputation accuracy. (We take Our panel and 1KGP3 panel as example)
+We used the genotype data from 143 individuals from 16 Chinese populations included in the Human Genome Diversity Project (HGDP) as prebuilt pseudo-GWAS dataset. We extracted all variants with consistent alleles in the pseudo-GWAS dataset and all compared panels. Then we randomly masked one-tenth of the SNVs, and these masked SNVs were used to evaluate imputation accuracy. (We take Our panel and 1KGP3 panel as example)
 ```
 bcftools isec -w 1 -n =2 -p isec chn.final.vcf.gz 1KGP3.vcf.gz --threads 8
 cat <(cat isec/0000.vcf | grep "^#") <(cat isec/0000.vcf | grep -vE "^#" | awk '{if(NR % 10 != 1) print $0}') | bgzip -c > isec/target.vcf.gz
@@ -128,11 +129,11 @@ tabix isec/masked.vcf.gz
 Before imputaion, we pre-phased the target genotype data using different panels respectively as following (Our panel for example):
 `eagle --noImpMissing --vcfRef chn.final.vcf.gz --vcfTarget target.vcf.gz --geneticMapFile $geneticMAP --allowRefAltSwap --vcfOutFormat z --outputUnphased --outPrefix target.chn.phase --numThreads 8`
 
-1. We run our panel using the following command:
+We run our panel using the following command:
 ```
 minimac4 --refHaps chn.panel.m3vcf.gz --haps target.chn.phase.vcf.gz --prefix chn.impute --cpus 8 --format GT,DS,GP --ignoreDuplicates --minRatio 0.000001 --noPhoneHome --allTypedSites
 ```
-2. We run the imputation of 1KGP1, 1KGP3, GAsP and HRC panel on the Michigan Imputation Server (https://imputationserver.sph.umich.edu), ChinaMAP (www.mbiobank.com) and WBBC (https://imputationserver.westlake.edu.cn/) respectively. 
+We run the imputation of 1KGP1, 1KGP3, GAsP and HRC panel on the Michigan Imputation Server (https://imputationserver.sph.umich.edu), ChinaMAP (www.mbiobank.com) and WBBC (https://imputationserver.westlake.edu.cn/) respectively. 
 
 
 
