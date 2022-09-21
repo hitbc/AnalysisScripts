@@ -4,11 +4,10 @@ Leadership: Tao Jiang and Yadong Liu
 
 ## Alignment 
 Alignment  Pipeline scripts  are available in the WGS_Pipeline directory.
-1. alignment.sh
-   Steps:
-    S01 bwa_mem_pipe
-    S02 picard_merge_sam_files
-    S03 gatk4_recalibration_by_chr
++ alignment.sh
+   - S01 bwa_mem_pipe
+   - S02 picard_merge_sam_files
+   - S03 gatk4_recalibration_by_chr
 2. qc.sh
    Steps:
     S01 fastqc_qc
