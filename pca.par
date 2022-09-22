@@ -1,0 +1,9 @@
+genotypename:	input.geno
+snpname:	input.snp
+indivname:	input.ind
+evecoutname:	output.evec
+evaloutname:	output.eval
+altnormstyle:	NO
+numoutevec:	10
+numthreads:	8
+fastmode:	YES
