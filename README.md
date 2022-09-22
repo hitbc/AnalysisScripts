@@ -80,7 +80,6 @@ Variant Calling Pipeline scripts are available in the ONT_Pipeline directory.
     * SURVIVOR: Merging the SV vcfs.
 
 ## Functional Annotation
-Dianming Liu, Siyuan Liu
 
 ### Download Dataset
 #### 1. AnnoVar Datasets
