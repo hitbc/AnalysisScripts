@@ -22,10 +22,14 @@ Alignment  Pipeline scripts  are available in the WGS_Pipeline directory.
 Long-reads Alignment Pipeline scripts ara available in ONT_Pipeline directory
 + 1. QC.sh
   - S01 Base calling using guppy
-+ 2. Mapping.sh 
+    * Guppy: Basecalling,filtering of low quality reads and clippiing of Oxford Nanopore adapters.
++ 2. Mmosdepth: Fast BAM/CRAM depth calculation tools for types of sequencing. 
   - S01 mapping reads to reference genome usign minimap2
+    * minimap2: Sequence alignment program that aligns DNA or mRNA sequences against a large reference database. 
   - S02 evaluation of mapping quality using nanoplot
+    * NanoPlot: Plotting tool for long read sequencing data and alignment.
   - S03 Calculating the depth per chromosome using mosdepth
+    * 
 
 ## Variant Calling based on short-reads
 Variant Calling  Pipeline scripts  are available in the WGS_Pipeline directory.
@@ -59,13 +63,21 @@ Variant Calling  Pipeline scripts  are available in the WGS_Pipeline directory.
 Variant Calling Pipeline scripts are available in the ONT_Pipeline directory.
 + VariantCalling.sh
   - S01 variant call using sniffles
+    * Sniffles: A fast structural variant caller for long-read sequencing.
   - S02 variant call using cuteSV
+    * cuteSV: A sensitive, fast and scalable long-read-based SV detection approach.
   - S03 variant call using svim
+    * SVIM: A structural variant caller for third-generation sequencing reads.
   - S04 variant call using nanovar
+    * NanoVar: A genomic structural variant caller that utilizes low-depth long-read sequencing.
   - S05 self defined script for filter variants
+    * Self definded script: Filtering variants based on depth.
   - S06 vcf merging by SURVIOR
+    * SURVIVOR: A tool set for merging and comparing SVs.
   - S07 force calling using cuteSV
+    * cuteSV: In this step, cuteSV is used for forcecalling.
   - S08 merge the force called varians using SURVIVOR
+    * SURVIVOR: Merging the SV vcfs.
 
 ## Functional Annotation
 Dianming Liu, Siyuan Liu
