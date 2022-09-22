@@ -1,0 +1,8 @@
+genotypename:	 input.bed
+snpname:	 input.map
+indivname:	 input.fam
+outputformat:	 PACKEDANCESTRYMAP
+genotypeoutname: output.geno
+snpoutname:	 output.snp
+indivoutname:	 output.ind
+familynames:	 NO
