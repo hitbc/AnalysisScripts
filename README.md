@@ -130,7 +130,7 @@ Example:`AnnotSV -SVinputFile example.vcf  -genomeBuild GRCh38 -outputFile examp
 Yang Li
 
 ## Statistical Analysis
-For detailed information, please refer to "./AnnotationStatistics/README.md". 
+For detailed information, please refer [here](https://github.com/hitbc/AnalysisScripts/blob/main/AnnotationStatistics/README.md). 
 
 ## Reference panel construction and imputation performing
 ### Population-based VCF quality control and filtering
