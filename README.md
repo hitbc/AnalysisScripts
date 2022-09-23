@@ -1,5 +1,6 @@
 # AnalysisScripts
-[TOC]
+[toc]
+
 Leadership: Tao Jiang and Yadong Liu
 
 
