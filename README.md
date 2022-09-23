@@ -108,6 +108,9 @@ UCSC datasets could be downloaded via its FTP site at <ftp://hgdownload.soe.ucsc
 Datasets downloaded by this way: phastCons20way, phastCons100way, phyloP20way, phyloP100way, etc.
 #### 4. Ensembl Dataset
 Ensembl dataset could be found and downloaded via its FTP site at <ftp://ftp.ensembl.org/pub>.
+#### 5. NCBI Dataset
+NCBI dataset could be found and downloaded via its FTP site at https://ftp.ncbi.nlm.nih.gov/.
+Datasets downloaded by this way: ClinVar, dbSNP, etc.
 
 ### LiftOver
 Some datasets in build GRCh37 need to be converted into build GRCh38 via liftover.  
