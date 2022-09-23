@@ -2,6 +2,8 @@
 [TOC]
 Leadership: Tao Jiang and Yadong Liu
 
+
+
 ## Alignment 
 Alignment  Pipeline scripts  are available in the WGS_Pipeline directory.
 + 1. alignment.sh
@@ -18,6 +20,20 @@ Alignment  Pipeline scripts  are available in the WGS_Pipeline directory.
       * Qualimap :Quality control of alignment sequencing data.
     - S03 verify_bam_id
       * VerifyBamID2 : Detecting and estimating inter-sample DNA contamination.
+
+Long-reads Alignment Pipeline scripts ara available in ONT_Pipeline directory
++ 1. QC.sh
+  - S01 Base calling using guppy
+    * Guppy: Basecalling,filtering of low quality reads and clippiing of Oxford Nanopore adapters.
++ 2. Mmosdepth: Fast BAM/CRAM depth calculation tools for types of sequencing. 
+  - S01 mapping reads to reference genome usign minimap2
+    * minimap2: Sequence alignment program that aligns DNA or mRNA sequences against a large reference database. 
+  - S02 evaluation of mapping quality using nanoplot
+    * NanoPlot: Plotting tool for long read sequencing data and alignment.
+  - S03 Calculating the depth per chromosome using mosdepth
+    * 
+
+
 
 ## Variant Calling based on short-reads
 Variant Calling  Pipeline scripts  are available in the WGS_Pipeline directory.
@@ -47,11 +63,30 @@ Variant Calling  Pipeline scripts  are available in the WGS_Pipeline directory.
       * shapeit: estimation of haplotypes from genotype or sequencing data.
 + 3.sv_joint_call: Follow <https://github.com/hall-lab/sv-pipeline>
 
+
 ## Variant Calling based on long-reads
-Ming Chen
+Variant Calling Pipeline scripts are available in the ONT_Pipeline directory.
++ VariantCalling.sh
+  - S01 variant call using sniffles
+    * Sniffles: A fast structural variant caller for long-read sequencing.
+  - S02 variant call using cuteSV
+    * cuteSV: A sensitive, fast and scalable long-read-based SV detection approach.
+  - S03 variant call using svim
+    * SVIM: A structural variant caller for third-generation sequencing reads.
+  - S04 variant call using nanovar
+    * NanoVar: A genomic structural variant caller that utilizes low-depth long-read sequencing.
+  - S05 self defined script for filter variants
+    * Self definded script: Filtering variants based on depth.
+  - S06 vcf merging by SURVIOR
+    * SURVIVOR: A tool set for merging and comparing SVs.
+  - S07 force calling using cuteSV
+    * cuteSV: In this step, cuteSV is used for forcecalling.
+  - S08 merge the force called varians using SURVIVOR
+    * SURVIVOR: Merging the SV vcfs.
+
+
 
 ## Functional Annotation
-Dianming Liu, Siyuan Liu
 
 ### Download Dataset
 #### 1. AnnoVar Datasets
@@ -94,13 +129,21 @@ Example: `perl table_annovar.pl example.avinput humandb/ -buildver hg38 -out exa
 #### 3. VarNote Annotation
 We use VarNote for filter-based and region-based annotation. Considering the large number of datasets involved, we use the configuration file to specify the name of the annotation item.  
 Example: `java -jar VarNote-1.1.0.jar Annotation -Q:tab,c=1,b=2,e=3,ref=4,alt=5 example.avinput -D:db,tag=exac03,mode=1 hg38_exac03.txt.gz -D:db,tag=cage_enhancers,mode=0 hg38_cage_enhancers.bed.gz -O example -OF BED -T 16 -A example.cfg -Z False -loj True -MVL 500`
+#### 4. AnnotSV Annotation
+We use AnnotSV for structural variant annotation, the dependent datasets should be downloaded during the installation.  
+Example:`AnnotSV -SVinputFile example.vcf  -genomeBuild GRCh38 -outputFile example.annotsv.out  -SVminSize 30`
+
 
 
 ## Population genetic analysis
-Yang Li
+For detailed information, please refer [here](https://github.com/hitbc/AnalysisScripts/blob/main/population_structure/README.md).
+
+
 
 ## Statistical Analysis
-Gaoyang Li
+For detailed information, please refer [here](https://github.com/hitbc/AnalysisScripts/blob/main/AnnotationStatistics/README.md). 
+
+
 
 ## Reference panel construction and imputation performing
 ### Population-based VCF quality control and filtering
@@ -133,7 +176,7 @@ Minimac3 --refHap combined.vcf.gz --processReference --prefix combined.panel
 
 ### Genotype imputation using different reference panels
 #### Pseudo-GWAS dataset generation for impuation
-We used the genotype data from 143 individuals from 16 Chinese populations included in the Human Genome Diversity Project (HGDP) as prebuilt pseudo-GWAS dataset. We extracted all variants with consistent alleles in the pseudo-GWAS dataset and all compared panels. Then we randomly masked one-tenth of the SNVs, and these masked SNVs were used to evaluate imputation accuracy. (We take Our panel and 1KGP3 panel as example)
+We used the genotype data from 143 individuals from 16 Chinese populations included in the Human Genome Diversity Project (HGDP) as prebuilt pseudo-GWAS dataset([HGDP samples](https://www.internationalgenome.org/data-portal/data-collection/hgdp)). We extracted all variants with consistent alleles in the pseudo-GWAS dataset and all compared panels. Then we randomly masked one-tenth of the SNVs, and these masked SNVs were used to evaluate imputation accuracy. (We take Our panel and 1KGP3 panel as example)
 
 ```
 bcftools isec -w 1 -n =2 -p isec chn.final.vcf.gz 1KGP3.vcf.gz --threads 8
@@ -155,4 +198,4 @@ We run our panel using the following command:
 minimac4 --refHaps chn.panel.m3vcf.gz --haps target.chn.phase.vcf.gz --prefix chn.impute --cpus 8 --format GT,DS,GP --ignoreDuplicates --minRatio 0.000001 --noPhoneHome --allTypedSites
 ```
 
-We run the imputation of 1KGP1, 1KGP3, GAsP and HRC panel on the Michigan Imputation Server (https://imputationserver.sph.umich.edu), ChinaMAP (www.mbiobank.com) and WBBC (https://imputationserver.westlake.edu.cn/) respectively. 
+We run the imputation of 1KGP1, 1KGP3, GAsP and HRC panel on the [Michigan Imputation Server](https://imputationserver.sph.umich.edu), [ChinaMAP](www.mbiobank.com) and [WBBC](https://imputationserver.westlake.edu.cn/) respectively. 
