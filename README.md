@@ -224,10 +224,15 @@ Third, we compared the dosage of masked genotype data and the imputed dosage by 
 python compare_dosage.py imputed.dose.vcf.gz masked.dosage.list chn.af.list True >r2.list
 ```
 
-If we run 1KGP1, 1KGP3, GAsP and HRC on Michigan Imputation Server, the output imputed VCF was on GRCh37 build, we will first convert the coordinate via liftover as follow (get.bed.pl and get.true.pl were in evaluation/compared_dosage.py):
+If we run 1KGP1, 1KGP3, GAsP and HRC on Michigan Imputation Server, the output imputed VCF was on GRCh37 build, we will first convert the coordinate via liftover as follow (get.bed.pl and get.true.pl were in evaluation):
 ```
 perl get.bed.pl imputed.dose.vcf.gz hg19.bed
 liftOver hg19.bed hg19ToHg38.over.chain.gz hg38.bed unmapped
 perl get.true.pl hg38.bed imputed.liftover.dose.vcf imputed.dose.vcf.gz
 bgzip imputed.liftover.dose.vcf
+```
+
+Final, we calculated the R^2 under different MAF bin as follow (evaluation/average_r2.py):
+```
+python average_r2.py r2.list
 ```
