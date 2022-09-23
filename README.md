@@ -67,7 +67,7 @@ Variant Calling  Pipeline scripts  are available in the WGS_Pipeline directory.
       * vcftools filter: --hwe option: Assesses sites for Hardy-Weinberg Equilibrium using an exact test; --max-missing : Exclude sites on the basis of the proportion of missing data.
     - S07 shapeit4
       * shapeit: estimation of haplotypes from genotype or sequencing data.
-+ 3.sv_joint_call: Follow <https://github.com/hall-lab/sv-pipeline>
++ 3. sv_joint_call: Follow <https://github.com/hall-lab/sv-pipeline>
 
 
 ## Variant Calling based on long-reads
