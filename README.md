@@ -1,8 +1,6 @@
 # AnalysisScripts
 [TOC]
-Leadership: Tao Jiang and Yadong Liu
-
-
+The repository was created to present the workflow for the large scale whole genome sequencing data analysis including software, command and in-house scripts, which were eaxctly used in "A comprehensive genetic variant reference for the Chinese population from the whole-genome sequencing of 25,734 individuals". For more advising, and help requiring, please contact tjiang@hit.edu.cn.
 
 ## Alignment 
 Alignment  Pipeline scripts  are available in the WGS_Pipeline directory.
