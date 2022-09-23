@@ -3,12 +3,12 @@ The repository was created to present the workflow for the large scale whole gen
 
 ## Table of Contents
 1. [Alignment](#Alignment)
-2. [Variant Calling based on short-reads](#Variant Calling based on short-reads)
+2. [Variant Calling based on short-reads](#Variant-Calling-based-on-short-reads)
 3. [Variant Calling based on long-reads](#Variant Calling based on long-reads)
-4. [Functional Annotation](#Functional Annotation)
-5. [Population genetic analysis](#Population genetic analysis)
-6. [Statistical Analysis](#Statistical Analysis)
-7. [Reference panel construction and imputation performing](#Reference panel construction and imputation performing)
+4. [Functional Annotation](#Functional-Annotation)
+5. [Population genetic analysis](#Population-genetic analysis)
+6. [Statistical Analysis](#Statistical-Analysis)
+7. [Reference panel construction and imputation performing](#Reference-panel-construction-and-imputation-performing)
 
 ## Alignment 
 Alignment  Pipeline scripts  are available in the WGS_Pipeline directory.
