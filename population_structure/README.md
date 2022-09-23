@@ -37,5 +37,13 @@
 	
 	Example: bash pca.sh convert.par/pca.pa
 
+### fst
+	We use vcftools to calculate the Fst value between the two populations.
+	
+	Examples:Vcftools --gzvcf input.vcf.gz --weir-fst-pop pop1 --weir-fst-pop pop2 --fst-window-size 50000 --fst-window-step 10000
+### pbs
+	We use pbscan to calculate the pbs values of three populations.
+	Example: pbscan -vcfp inpu.vcf -pop1 input.pop1 -pop2 input.pop2  -pop3 input.pop3 -win 50 -step 10 -div 1 -out output_file
+
 ### effective_pop.sh
 	To comprehend the demographic history, we inferred the effective population size of the populations distributed in three major regions of China: North, South, and Tibet with SMC++. After preprocessing the data, for each population, we used SMC++ (v 1.15.3) to convert the format of the VCF files, and estimate the history of effective population size as recommended by the authors of SMC++. Finally, we plot the results with the plot function within SMC++.
