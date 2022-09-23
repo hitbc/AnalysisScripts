@@ -2,6 +2,8 @@
 
 Leadership: Tao Jiang and Yadong Liu
 
+
+
 ## Alignment 
 Alignment  Pipeline scripts  are available in the WGS_Pipeline directory.
 + 1. alignment.sh
@@ -31,6 +33,8 @@ Long-reads Alignment Pipeline scripts ara available in ONT_Pipeline directory
   - S03 Calculating the depth per chromosome using mosdepth
     * 
 
+
+
 ## Variant Calling based on short-reads
 Variant Calling  Pipeline scripts  are available in the WGS_Pipeline directory.
 + 1. variant_call.sh
@@ -59,6 +63,7 @@ Variant Calling  Pipeline scripts  are available in the WGS_Pipeline directory.
       * shapeit: estimation of haplotypes from genotype or sequencing data.
 
 
+
 ## Variant Calling based on long-reads
 Variant Calling Pipeline scripts are available in the ONT_Pipeline directory.
 + VariantCalling.sh
@@ -78,6 +83,8 @@ Variant Calling Pipeline scripts are available in the ONT_Pipeline directory.
     * cuteSV: In this step, cuteSV is used for forcecalling.
   - S08 merge the force called varians using SURVIVOR
     * SURVIVOR: Merging the SV vcfs.
+
+
 
 ## Functional Annotation
 
@@ -126,11 +133,17 @@ Example: `java -jar VarNote-1.1.0.jar Annotation -Q:tab,c=1,b=2,e=3,ref=4,alt=5 
 We use AnnotSV for structural variant annotation, the dependent datasets should be downloaded during the installation.  
 Example:`AnnotSV -SVinputFile example.vcf  -genomeBuild GRCh38 -outputFile example.annotsv.out  -SVminSize 30`
 
+
+
 ## Population genetic analysis
-Yang Li
+For detailed information, please refer [here](https://github.com/hitbc/AnalysisScripts/blob/main/population_structure/README.md).
+
+
 
 ## Statistical Analysis
 For detailed information, please refer [here](https://github.com/hitbc/AnalysisScripts/blob/main/AnnotationStatistics/README.md). 
+
+
 
 ## Reference panel construction and imputation performing
 ### Population-based VCF quality control and filtering
