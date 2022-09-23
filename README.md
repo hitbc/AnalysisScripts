@@ -204,4 +204,30 @@ We run our panel using the following command:
 minimac4 --refHaps chn.panel.m3vcf.gz --haps target.chn.phase.vcf.gz --prefix chn.impute --cpus 8 --format GT,DS,GP --ignoreDuplicates --minRatio 0.000001 --noPhoneHome --allTypedSites
 ```
 
-We run the imputation of 1KGP1, 1KGP3, GAsP and HRC panel on the [Michigan Imputation Server](https://imputationserver.sph.umich.edu), [ChinaMAP](www.mbiobank.com) and [WBBC](https://imputationserver.westlake.edu.cn/) respectively. 
+We run the imputation of 1KGP1, 1KGP3, GAsP and HRC panel on the [Michigan Imputation Server](https://imputationserver.sph.umich.edu), [ChinaMAP](www.mbiobank.com) and [WBBC](https://imputationserver.westlake.edu.cn/) respectively.
+
+### Calculation of estimated squared correlation coefficient (aggregate R2) for imputation accuracy
+$R^2$ was calculated by comparing the imputed genotype dosage and the masked genotypes dosage in the target genotype data for each reference panel to compare the imputation accuracy among minor allele frequence bins.
+
+We first calculated the dosage of masked genotype data using `bcftoos +dosage`:
+```
+bcftools +dosage masked.vcf.gz -- -t GT > masked.dosage.list
+```
+
+Second, we defined the MAF bins usning different panels and generated the AF list using `bcftools query` (our panel for example):
+```
+bcftools query -f '%CHROM\t%POS\t%REF\t%ALT\t%INFO/AF\n' chn.final.vcf.gz > chn.af.list
+```
+
+Third, we compared the dosage of masked genotype data and the imputed dosage by Minimac4 under different AMF bins using in-house script (evaluation/compared_dosage.py):
+```
+python compare_dosage.py imputed.dose.vcf.gz masked.dosage.list chn.af.list True >r2.list
+```
+
+If we run 1KGP1, 1KGP3, GAsP and HRC on Michigan Imputation Server, the output imputed VCF was on GRCh37 build, we will first convert the coordinate via liftover as follow (get.bed.pl and get.true.pl were in evaluation/compared_dosage.py):
+```
+perl get.bed.pl imputed.dose.vcf.gz hg19.bed
+liftOver hg19.bed hg19ToHg38.over.chain.gz hg38.bed unmapped
+perl get.true.pl hg38.bed imputed.liftover.dose.vcf imputed.dose.vcf.gz
+bgzip imputed.liftover.dose.vcf
+```
