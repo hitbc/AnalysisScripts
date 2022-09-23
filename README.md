@@ -176,7 +176,7 @@ Minimac3 --refHap combined.vcf.gz --processReference --prefix combined.panel
 
 ### Genotype imputation using different reference panels
 #### Pseudo-GWAS dataset generation for impuation
-We used the genotype data from 143 individuals from 16 Chinese populations included in the Human Genome Diversity Project (HGDP) as prebuilt pseudo-GWAS dataset. We extracted all variants with consistent alleles in the pseudo-GWAS dataset and all compared panels. Then we randomly masked one-tenth of the SNVs, and these masked SNVs were used to evaluate imputation accuracy. (We take Our panel and 1KGP3 panel as example)
+We used the genotype data from 143 individuals from 16 Chinese populations included in the Human Genome Diversity Project (HGDP) as prebuilt pseudo-GWAS dataset([HGDP samples](https://www.internationalgenome.org/data-portal/data-collection/hgdp)). We extracted all variants with consistent alleles in the pseudo-GWAS dataset and all compared panels. Then we randomly masked one-tenth of the SNVs, and these masked SNVs were used to evaluate imputation accuracy. (We take Our panel and 1KGP3 panel as example)
 
 ```
 bcftools isec -w 1 -n =2 -p isec chn.final.vcf.gz 1KGP3.vcf.gz --threads 8
