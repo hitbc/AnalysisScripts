@@ -185,4 +185,4 @@ We run our panel using the following command:
 minimac4 --refHaps chn.panel.m3vcf.gz --haps target.chn.phase.vcf.gz --prefix chn.impute --cpus 8 --format GT,DS,GP --ignoreDuplicates --minRatio 0.000001 --noPhoneHome --allTypedSites
 ```
 
-We run the imputation of 1KGP1, 1KGP3, GAsP and HRC panel on the Michigan Imputation Server (https://imputationserver.sph.umich.edu), ChinaMAP (www.mbiobank.com) and WBBC (https://imputationserver.westlake.edu.cn/) respectively. 
+We run the imputation of 1KGP1, 1KGP3, GAsP and HRC panel on the [Michigan Imputation Server](https://imputationserver.sph.umich.edu), [ChinaMAP](www.mbiobank.com) and [WBBC](https://imputationserver.westlake.edu.cn/) respectively. 
