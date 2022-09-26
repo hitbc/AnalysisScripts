@@ -36,6 +36,20 @@ regulation_region/split_region_variants_col.py
 regulation_region/submit_fetch_1000.py
 ```
 
+## Statistics on the number of variants nearby promoter and enhancer region 
+(1) Split the promoter and enhancer raw dependency dataset by chromosome for subsequent parallel analysis
+```
+regulation_region/split_regulation.py
+```
+(2) Count the variants located in the regulation region
+```
+regulation_region/submit_find_regu.py
+```
+(3) Combine the results of each chromosome
+```
+regulation_region/combine_regulation.py
+```
+
 
 ## For SVs:
 (1)Execute annotation statistics, where "SV_var.vcf" is the joint SV file, "annoteSV_sesult.tsv" is the annotation result generate by annoteSV, and "output_fn.json" is the statistics result.
