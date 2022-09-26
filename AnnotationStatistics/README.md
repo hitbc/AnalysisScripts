@@ -18,6 +18,25 @@ find ../annotationAnaysisSNP_rst/* | grep json > all_json_file_list_SNP.txt
 ./annotationAnaysisSNP SV_excel all_combine.json title_str > final_excel_SV.tsv
 ```
 
+## Statistics on the number of variants in fixed-length window intervals
+(1) Using 500/1000/10000/100000 as window lengths, count the number of variants in each window on each chromosome, and the number of variants distributed in each frequency class
+```  
+regulation_region/submit_find_out.py
+```
+(2) Combine all the analysis results in all windows
+```
+regulation_region/cmb_region_variants.py
+```
+(3) Split the results according to the frequency level
+```
+regulation_region/split_region_variants_col.py
+```
+(4) Sort the number of variants distributed in frequency classes and fetch the top 1000 windows with the most variants
+```
+regulation_region/submit_fetch_1000.py
+```
+
+
 ## For SVs:
 (1)Execute annotation statistics, where "SV_var.vcf" is the joint SV file, "annoteSV_sesult.tsv" is the annotation result generate by annoteSV, and "output_fn.json" is the statistics result.
 ```
