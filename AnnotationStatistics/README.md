@@ -50,6 +50,15 @@ regulation_region/submit_find_regu.py
 regulation_region/combine_regulation.py
 ```
 
+## Statistics of the number of variants in gene regions
+(1) Count the number of variants on each gene
+```
+submit_fetch_gene_nums.py
+```
+(2) Combine the statistical results
+```
+cmb_gene_nums.py
+```
 
 ## For SVs:
 (1)Execute annotation statistics, where "SV_var.vcf" is the joint SV file, "annoteSV_sesult.tsv" is the annotation result generate by annoteSV, and "output_fn.json" is the statistics result.
